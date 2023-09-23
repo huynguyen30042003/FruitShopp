@@ -24,10 +24,13 @@ public class Algorithm {
             chooseFruit -= 1;
             fruit = dataFruit.get(chooseFruit);
             System.out.println("You selected :" + dataFruit.get(chooseFruit).getFruitName());
-            fruit.setQuality(Library.getInt("Please input quantity: ", 1, 10000));
+            fruit.setQuality(Library.getInt("Please input quantity", 1, 10000));
             System.out.println(fruit);
             listFrust.add(fruit);
             System.out.println(listFrust);
+            for (Fruit fruit2 : listFrust) {
+                System.out.println(fruit2.getFruitName()+" "+ );
+            }
         } while (isTrue("Do you want to order more (Y/N)?", "Y", "N"));
         if (isTrue("Do you want to order now (Y/N)", "Y", "N")) {
             System.out.println("Product Quantity Price Amount");
@@ -38,7 +41,7 @@ public class Algorithm {
                 allAmount += fruit.getPrice() * fruit.getQuality();
             }
             System.out.println("Total: " + allAmount);
-            String nameCustomer = Library.validString("Input your name");
+            String nameCustomer = capitalizeFirstLetter(Library.validString("Input your name"));
             customerOrder.put(nameCustomer, listFrust);
         }
     }
@@ -56,6 +59,18 @@ public class Algorithm {
             }
             System.out.println("Total: " + allAmount);
         }
+    }
+
+    public static String capitalizeFirstLetter(String str) {
+        String[] words = str.split("\\s");
+        StringBuilder sb = new StringBuilder();
+
+        for (String word : words) {
+            char firstLetter = Character.toUpperCase(word.charAt(0));
+            sb.append(firstLetter).append(word.substring(1)).append(" ");
+        }
+
+        return sb.toString().trim();
     }
 
 }

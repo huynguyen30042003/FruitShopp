@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
+import Common.Algorithm;
 import Common.Library;
 
 public class Fruit {
@@ -64,13 +65,13 @@ public class Fruit {
 
     @Override
     public String toString() {
-        return fruitId + " " + fruitName + " " + origin + " " + price;
+        return (fruitId + 1) + " " + fruitName + " " + origin + " " + price;
     }
 
     public void input(ArrayList<Fruit> dataFruit) {
         setFruitId(dataFruit.size());
-        setFruitName(Library.validString("Enter valid fruit name: "));
+        setFruitName(Algorithm.capitalizeFirstLetter(Library.validString("Enter valid fruit name")));
         setPrice(Library.getInt("Enter valid price", 1000, 1000000));
-        setOrigin(Library.validString("Enter valid origin"));
+        setOrigin(Algorithm.capitalizeFirstLetter(Library.validString("Enter valid origin")));
     }
 }
